@@ -1,0 +1,21 @@
+input{
+  display:block;
+}
+input[type="radio"]{
+  display:inline-flex;
+}
+input[type="submit"]{
+  float:right;
+}
+textarea{
+  display: block;
+}
+form{
+  width: 30%;
+}
+th {
+    padding-right: 30px;
+}
+button {
+    margin-left: 55%;
+}
