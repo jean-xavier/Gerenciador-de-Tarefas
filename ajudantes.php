@@ -21,6 +21,11 @@
         }
 
         $dados = explode('/', $data);
+
+        if(count($dados)!=3){
+            return $data;
+        }
+
         $data_mysql = "{$dados[2]}-{$dados[1]}-{$dados[0]}";   
 
         return $data_mysql; 
@@ -32,6 +37,11 @@
         }
 
         $dados = explode("-", $data);
+
+        if(count($dados) != 3){
+            return $data;
+        }
+
         $data_exibir = "{$dados[2]}/{$dados[1]}/{$dados[0]}";
         
         return $data_exibir;
@@ -50,4 +60,37 @@
         }
         return false;
     }
+
+    function validar_data($data){
+        $padrao = '/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/';
+        $resultado = preg_match($padrao, $data);
+
+        if(!$resultado){
+            return false;
+        }
+
+        $dados = explode('/',$data);
+
+        $dia = $dados[0];
+        $mes = $dados[1];
+        $ano = $dados[2];
+
+        $resultado = checkdate($mes, $dia, $ano);
+
+        return $resultado;
+    }
+
+    function tratar_anexo($anexo){
+        $padrao = '/^.+(\.pdf|\.zip)$/';
+        $resultado = preg_match($padrao, $anexo['name']);
+
+        if(!$resultado){
+            return false;
+        }
+
+        move_uploaded_file($anexo['tmp_name'], "anexo/{$anexo['name']}");
+
+        return true;
+    }
+
 ?>

@@ -26,8 +26,14 @@
             $tarefa['descricao'] = '';
         }
 
-        if (isset($_POST['prazo'])) {
-            $tarefa['prazo'] = traduz_data_para_banco($_POST['prazo']);
+        if (isset($_POST['prazo']) && strlen($_POST['prazo'])) {
+            if(validar_data($_POST['prazo'])){
+                $tarefa['prazo'] = traduz_data_para_banco($_POST['prazo']);
+            } else {
+                $tem_erros = true;
+                $erros_validacao['prazo'] = 'O prazo não é uma data válida';
+            }
+            
         } else {
             $tarefa['prazo'] = '';
         }

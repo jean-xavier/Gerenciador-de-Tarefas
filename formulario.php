@@ -17,6 +17,11 @@
         </label>
         <label>
             Prazo (Opcional):
+            <?php if($tem_erros && isset($erros_validacao['prazo'])) :?>
+                <span class="erro">
+                    <?php echo $erros_validacao['prazo']; ?>
+                </span>
+            <?php endif;?>
             <input type="text" name="prazo" value="<?php traduz_data_para_exibir($tarefa['prazo']) ?>"/>
         </label>
         <fieldset>

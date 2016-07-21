@@ -9,7 +9,9 @@
     </tr>
     <?php foreach ($lista_tarefas as $tarefas) : ?>
         <tr>
-            <td><?php echo $tarefas['nome']; ?></td>
+            <td>
+                <a href="tarefa.php?id=<?php echo $tarefas['id']; ?>"><?php echo $tarefas['nome']; ?></a>
+            </td>
             <td><?php echo $tarefas['descricao']; ?></td>
             <td><?php echo traduz_data_para_exibir($tarefas['prazo']); ?></td>
             <td><?php echo traduz_prioridade($tarefas['prioridade']); ?></td>
@@ -18,6 +20,7 @@
                 <a href="editar.php?id=<?php echo $tarefas['id']; ?>">Editar</a>
                 <a href="remover.php?id=<?php echo $tarefas['id']; ?>">Remover</a>
             </td>
+            
         </tr>
     <?php endforeach; ?>
 </table>
