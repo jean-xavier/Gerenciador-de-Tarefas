@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="./_css/style.css"/>
     </head>
     <body>
-        <h1>Gerenciador de Tarefas</h1>
+        <h1 id="title">Gerenciador de Tarefas</h1>
 
         <?php include('formulario.php'); ?>
 

@@ -26,6 +26,26 @@
             <?php echo traduz_prioridade($tarefa['prioridade']); ?>
         </p>
         <h2>Anexos</h2>
+        
+        <?php if(count($anexos) > 0):?>
+            <table>
+                <tr>
+                    <td>Arquivo</td>
+                    <td>Opção</td>
+                </tr>
+                <?php foreach ($anexos as $anexo) :?>
+                    <tr>
+                        <td><?php echo $anexo['nome'];?></td>
+                        <td>
+                            <a href="anexo/<?php echo $anexo['arquivo']; ?>">Download</a>
+                        </td>                        
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        <?php else: ?>
+            <p>Não há anexos para essa tarefa</p>    
+        <?php endif;?>
+        
         <form action="" method="post" enctype="multipart/form-data">
             <fieldset>
                 <legend>Novo anexo</legend>
@@ -40,8 +60,6 @@
                 </label>
                 <input type="submit" value="Cadastrar">
             </fieldset>
-        
         </form>
-
     </body>
 </html>

@@ -11,11 +11,16 @@ textarea{
   display: block;
 }
 form{
-  width: 30%;
-}
-td {
-    padding-right: 30px;
+  width: 65%;
 }
 button {
     margin-left: 55%;
+}
+
+.style{
+  position: relative;
+  margin-left: 26%;
+}
+#title{
+  margin-left: 38%;
 }

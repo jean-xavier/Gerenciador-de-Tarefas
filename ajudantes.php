@@ -93,4 +93,46 @@
         return true;
     }
 
-?>
+    function enviar_email($tarefa, $anexos = array()){
+        
+        $corpo = prepara_corpo_email($tarefa, $anexos);
+        
+        include "bibliotecas/PHPMailer/PHPMailerAutoload.php";
+
+        $email = new PHPMailer();
+        $email->isSMTP();
+        $email->Host = "smtp.gmail.com";
+        $email->Port = 587;
+        $email->SMTPSecure = 'tls';
+        $email->SMTPAuth = true;
+        $email->Username = "user_email";
+        $email->Password = "PassWord";
+        $email->setFrom("user_email", "Avisador de Tarefas");
+        $email->addAddress(EMAIL_NOTIFICACAO);
+        $email->Subject = "Aviso de tarefa: {$tarefa['nome']}";
+        $email->msgHTML($corpo);
+
+        foreach ($anexos as $anexo) {
+            $email->addAttachment("anexo/{$anexo['arquivo']}");
+        }
+
+        $email->send();
+
+    }
+
+    function prepara_corpo_email($tarefa, $anexo){
+        //Aqui vamos pegar o conteúdo processado pelo template_email.php
+
+        //Falar para o navegador que não é para enviar o processamento para o navegador
+        ob_start();
+
+        include "template_email.php";
+
+        //Guardar o conteúdo do arquivo em uma variável
+        $corpo = ob_get_contents();
+
+        //Falar para o PHP que ele pode voltar a mandar conteúdos para o navegador
+        ob_end_clean();
+
+        return $corpo;
+    }
