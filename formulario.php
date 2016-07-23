@@ -1,4 +1,4 @@
-<div class="style">
+<div>
     <form method="POST">
         <input type="hidden" name="id" value="<?php echo $tarefa['id']; ?>"/>
         <fieldset>

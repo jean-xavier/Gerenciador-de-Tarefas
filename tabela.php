@@ -1,12 +1,12 @@
-<div class="table">
+<div>
     <table>
         <tr>
-            <th class="tr-title">Tarefas</th>
-            <th class="tr-title">Descrição</th>
-            <th class="tr-title">Prazo</th>
-            <th class="tr-title">Prioridade</th>
-            <th class="tr-title">Concluída</th>
-            <th class="tr-title">Opções</th>
+            <th>Tarefas</th>
+            <th>Descrição</th>
+            <th>Prazo</th>
+            <th>Prioridade</th>
+            <th>Concluída</th>
+            <th>Opções</th>
         </tr>
         <div>
             <?php foreach ($tarefas->tarefas as $tarefas) : ?>
