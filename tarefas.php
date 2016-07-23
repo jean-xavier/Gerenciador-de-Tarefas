@@ -4,13 +4,16 @@
     include('config.php');
     include('banco.php');
     include('ajudantes.php');
-  
+    include('classes/Tarefas.php');
+
+    $tarefas = new Tarefas($mysqli);
+
     $exibir_tabela = true;
     
     $tem_erros = false;
     $erros_validacao = array();
 
-    if (tem_post()){
+    if(tem_post()){
     
         $tarefa = array();
 
@@ -48,7 +51,7 @@
         }
 
         if(!$tem_erros){
-            gravar_tarefa($conexao, $tarefa);
+            $tarefas->gravar_tarefa($tarefa);
 
             if(isset($_POST['lembrete']) && $_POST['lembrete'] == 1){
                 enviar_email($tarefa);
@@ -60,8 +63,8 @@
         
     }
 
-    $lista_tarefas = buscar_tarefas($conexao);
-  
+    $tarefas->buscar_tarefas();
+
     $tarefa = array('id' => 0,
                     'nome' => (isset($_POST['nome'])) ? $_POST['nome'] : '',
                     'descricao' => (isset($_POST['descricao'])) ? $_POST['descricao'] : '',
@@ -69,5 +72,7 @@
                     'prioridade' => (isset($_POST['prioridade'])) ? $_POST['prioridade'] : 1,
                     'concluida' => (isset($_POST['concluida'])) ? $_POST['concluida'] : ''
               );
-  
+    
+    
+
     include('template.php');
